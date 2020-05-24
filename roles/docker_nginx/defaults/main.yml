@@ -1,0 +1,5 @@
+docker_packages: ["docker.io","python-pip"]
+project_name: docker
+port_80_mapping: 80
+port_443_mapping: 443
+

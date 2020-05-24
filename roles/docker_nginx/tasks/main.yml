@@ -1,0 +1,22 @@
+    - name: install required packages for docker and docker-compose
+      apt:
+        pkg: "{{ docker_packages }}"
+        force_apt_get: yes
+
+    - name: install docker-compose using pip
+      pip:
+        name: docker-compose
+        executable: pip3
+
+    - name: docker-compose up
+      docker_compose:
+        project_name: "{{ project_name }}"
+        definition:
+          version: '3'
+          services:
+            nginx:
+              image: "nginx"
+              ports:
+                - "{{ port_80_mapping }}:80"
+                - "{{ port_443_mapping }}:443"
+        state: present
